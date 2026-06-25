@@ -7,6 +7,20 @@ migration rules, continuous-integration conventions, and the like). What stays i
 should be identical in every repo: the plain-voice rule, the banned-term dictionary, and a few
 general process rules.
 
+## This repo is a template, not a project
+
+`agents` is not an application — there is nothing here to build, test, or ship. It is the single
+source of the baseline agent instructions that every new repository starts from. Create a new project
+by copying this baseline in (see *Use it in a new repo* below); every project then shares the same
+agent behavior from its first session — the same writing voice, banned-term dictionary, branch
+naming, and pull-request → merge → branch-cleanup lifecycle.
+
+Because it is the baseline, these rules are settled and are not relitigated per project. The voice,
+the dictionary, and the lifecycle are defined once, here, and inherited everywhere — there is no need
+to re-explain them each time a project is created. Edit this repo to change the baseline for every
+future project; edit a forked project to change only that project. The pull-request/merge lifecycle in
+`AGENTS.md` is a rule the *forked projects* follow; this template repo itself is not run as a project.
+
 ## What's in this folder
 
 | File | What it is |
