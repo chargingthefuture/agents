@@ -11,7 +11,7 @@ general process rules.
 
 | File | What it is |
 |---|---|
-| `AGENTS.md` | The instructions themselves. Copy into the new repo (as its `CLAUDE.md` or `AGENTS.md`). Ends with a placeholder for that repo's own rules. |
+| `AGENTS.md` | The instructions themselves. Copy into the new repo (as its `CLAUDE.md` or `AGENTS.md`). Covers the writing voice, the banned-term dictionary, branch naming, and the pull-request → merge → branch-cleanup lifecycle. Ends with a placeholder for that repo's own rules. |
 | `hooks/check-no-pleasantries.mjs` | The Stop hook that enforces the voice rule and the dictionary. This file is the canonical list. |
 | `settings.example.json` | The `.claude/settings.json` snippet that registers the Stop hook. |
 

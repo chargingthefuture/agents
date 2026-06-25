@@ -109,6 +109,49 @@ can run anytime").
   name like `claude/loving-mendel-wwWF4`). Treat it as a throwaway base: immediately branch off it (or
   off the default branch) to a descriptive name and push from the descriptive branch.
 - Branch names must describe the task at hand — never an opaque or random string.
+- Carry the branch all the way through to a merged pull request, then clean it up — see
+  *Pull requests and the merge lifecycle* below.
+
+---
+
+## Pull requests and the merge lifecycle (all agents)
+
+A task is not finished when the code is written — it is finished when the change is merged and the
+branch is cleaned up. Carry every change through that whole path, in this order, without being asked:
+
+1. **Open a pull request when the work is complete.** Once the task's changes are committed and the
+   descriptive branch is pushed, open a pull request from that branch against the default branch.
+   Finished work should not sit on a branch with no pull request. Give the request a descriptive,
+   plain-language title and a body that says what changed and why, in the same plain voice as every
+   other reply.
+2. **Watch the request through to merge.** Opening it is not the finish line; track its state until
+   it is merged. Where the environment can notify you of changes to the request — review comments,
+   check results, new conflicts — subscribe to those notifications instead of checking in a tight
+   loop; otherwise re-check its status from time to time. Never block on a sleep loop.
+3. **Keep it mergeable — fix conflicts.** If the default branch moves ahead and the request develops
+   merge conflicts, bring the latest default-branch commits into the branch (rebase onto it, or merge
+   it in) and resolve the conflicts, keeping both sides' intent. If a conflict is a real, ambiguous
+   clash where either resolution changes how the code behaves, stop and ask rather than guess.
+4. **Merge when it is ready.** Merge once the automated checks (continuous integration, or CI) are
+   green and the request is mergeable with no unresolved "changes requested" review. Use the
+   repository's default merge method. If required checks take a while, turn on auto-merge so the
+   request merges itself the moment they pass, rather than waiting on it. Never force a merge over a
+   failing required check or an open request for changes — fix the cause, or report it and stop.
+5. **Delete the branch after merge.** Once the request is merged, delete the now-merged head branch
+   so old branches do not pile up.
+
+The gate in step 4 — green checks, mergeable, no open change-requests — is the safe default. A
+repository that requires human review before merge should keep that requirement: set the gate to
+match the repository's own rules rather than merging around them.
+
+Mechanism, by where the agent runs:
+
+- **Claude Code on the web:** use the GitHub tools to open the request, update its branch from the
+  default branch, and merge it; use the pull-request activity subscription to be told about check
+  results, reviews, and conflicts instead of polling for them.
+- **Local Claude Code / a terminal:** `gh pr create` to open it, `gh pr checks` to read check state,
+  `git rebase`/`git merge` to clear conflicts, and `gh pr merge --auto --delete-branch` (with the
+  repository's merge method) to merge and remove the branch in one step.
 
 ---
 
