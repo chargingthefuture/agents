@@ -30,6 +30,7 @@ future project; edit a forked project to change only that project. The pull-requ
 | `settings.example.json` | The `.claude/settings.json` snippet that registers the Stop hook. |
 | `.claude/commands/bpr.md` | The `/bpr` slash command: do a task on a descriptive branch and open its pull request right the first time — descriptive name, plain title and body, correct merge lane. Enforces the branch-naming and merge-lifecycle rules in `AGENTS.md`. |
 | `.claude/commands/pr.md` | The `/pr` slash command: sweep the repo's open pull requests and drive each one to merge — fix conflicts, fix failing checks, update behind branches, address review comments. |
+| `behavior-change-log.md` | An empty, append-only log for recording when an agent drifts from the owner's standing preferences (defined in `AGENTS.md`). Copy it into the new repo; each repo keeps its own history. |
 
 ## Use it in a new repo
 
@@ -41,7 +42,10 @@ future project; edit a forked project to change only that project. The pull-requ
    `.claude/commands/`. They give you `/bpr` (branch + open a correct pull request) and `/pr` (drive
    open pull requests to merge). Both are project-agnostic; adjust the risky-lane list or the metadata
    fields only if that repo needs different ones.
-5. Fill in the `<PROJECT-SPECIFIC RULES>` section at the bottom of the copied `AGENTS.md` with that
+5. Copy `behavior-change-log.md` to the new repo's root. The owner's standing preferences (the locked
+   time format and the no-silent-vocabulary-change rule) travel inside `AGENTS.md` already; this file
+   is the empty log those preferences point at, which each repo then appends to.
+6. Fill in the `<PROJECT-SPECIFIC RULES>` section at the bottom of the copied `AGENTS.md` with that
    repo's own rules. Leave the voice, dictionary, and process sections above it unchanged.
 
 That is enough for the dictionary to apply from the first session: the model reads `CLAUDE.md` at

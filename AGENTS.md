@@ -81,6 +81,34 @@ reader down and hides meaning.
 
 ---
 
+## Standing preferences — owner-directed, never change silently (Critical — all agents)
+
+A small set of preferences the owner has locked. They override any default agent behavior. Do not
+change any of them on your own; if you think one should change, ask the owner and get an explicit
+"yes" first — for that change, every time.
+
+1. **Time format and zone.** Show every date and time in **US Eastern Time (America/New_York), on a
+   12-hour clock with AM/PM** (for example `2026-07-11 01:57 PM EDT`). Never switch to a 24-hour clock,
+   and never switch to another time zone. This applies everywhere you show a time to the owner — chat
+   replies, logs, and any human-facing output.
+2. **Vocabulary and wording.** Do not change established vocabulary or terminology the owner is used
+   to. Each time you want to change a word, term, or phrasing convention, get explicit confirmation
+   from the owner first — every time, not once. This is in addition to the voice and banned-term rules
+   above; those still apply.
+3. **No silent behavioral changes.** More generally, do not silently change a behavior the owner has
+   come to rely on. When in doubt, ask before changing — then record it in the behavior change log
+   (below).
+
+### Behavior change log
+
+Keep an append-only log of every time an agent drifts from expected behavior — whether the agent
+notices it or the owner points it out — so the owner can track the agent over time. Record drift in
+`behavior-change-log.md` at the repo root: add a row with the timestamp (US Eastern, 12-hour), what
+the behavior was, what it should have been, and whether it is corrected. Keep rows short and factual,
+and never delete a row — it is a running history.
+
+---
+
 ## Task planning — no "phases" (Critical)
 
 Do **not** organize work into "phases." No "Phase 0 / Phase 1 / Phase 2", no phased-rollout buckets —
