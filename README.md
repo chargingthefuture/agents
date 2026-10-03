@@ -28,6 +28,7 @@ future project; edit a forked project to change only that project. The pull-requ
 | `AGENTS.md` | The instructions themselves. Copy into the new repo (as its `CLAUDE.md` or `AGENTS.md`). Covers the writing voice, the banned-term dictionary, branch naming, and the pull-request → merge → branch-cleanup lifecycle. Ends with a placeholder for that repo's own rules. |
 | `hooks/check-no-pleasantries.mjs` | The Stop hook that enforces the voice rule and the dictionary. This file is the canonical list. |
 | `settings.example.json` | The `.claude/settings.json` snippet that registers the Stop hook. |
+| `commands/` | Every slash command, each a routine an agent follows. Four carry into any repo; the rest need the workflows and labels they name. `commands/README.md` says which is which and the three lines to change. |
 
 ## Use it in a new repo
 
@@ -35,7 +36,12 @@ future project; edit a forked project to change only that project. The pull-requ
 2. Copy `hooks/check-no-pleasantries.mjs` to the new repo at `.claude/hooks/check-no-pleasantries.mjs`.
 3. Register the Stop hook: merge `settings.example.json` into the new repo's `.claude/settings.json`
    (create the file if it does not exist). The command path is `node .claude/hooks/check-no-pleasantries.mjs`.
-4. Fill in the `<PROJECT-SPECIFIC RULES>` section at the bottom of the copied `AGENTS.md` with that
+4. Copy the slash commands the new repo needs from `commands/` to `.claude/commands/`. Take
+   `br.md`, `pr.md`, `fix.md` and `fl.md` every time — they need only a git remote and a default
+   branch — and change the three lines `commands/README.md` names, which point at the source
+   project's own checks. Leave the rest behind unless the new repo has the workflows and labels
+   they drive.
+5. Fill in the `<PROJECT-SPECIFIC RULES>` section at the bottom of the copied `AGENTS.md` with that
    repo's own rules. Leave the voice, dictionary, and process sections above it unchanged.
 
 That is enough for the dictionary to apply from the first session: the model reads `CLAUDE.md` at
