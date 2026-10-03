@@ -158,6 +158,33 @@ Mechanism, by where the agent runs:
 
 ---
 
+## Slash commands (all agents)
+
+A slash command in `.claude/commands/` is the standing way to do its kind of work. The user does
+not have to type it for it to apply — the request itself is the trigger. Four come with this
+template and apply in any repository:
+
+| Command | Applies when |
+|---|---|
+| `/br` | Any request that changes files. |
+| `/pr` | Open pull requests are blocked, behind, conflicted or failing checks. |
+| `/fix` | The user points at a sentence that does not read right. |
+| `/fl` | The user asks whether the chat can be archived. |
+
+`/br` is the one that matters most and the one sessions skip: branch off the latest default branch
+before any edit, never the session's auto-generated branch, then the lifecycle in "Pull requests
+and the merge lifecycle" above.
+
+`/fl` answers one question — does any work exist nowhere but this session. An open pull request is
+not an open task: it is committed, pushed and carried by its branch, so the state of it is reported
+rather than waited on. What matters is an uncommitted change, a commit never pushed, a pushed
+branch with no pull request, a scheduled check-in still armed, and anything the user asked for that
+was never started.
+
+A repository adds its own commands beside these, listed in its own rules file. See
+`commands/README.md` in this template for the rest of the source project's commands and what each
+one needs behind it.
+
 ## Keep sessions from filling up (owner directive, 2026-09-26)
 
 Everything an agent reads stays in the session until compaction, and compaction swaps the earlier
