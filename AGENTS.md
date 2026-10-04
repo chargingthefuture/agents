@@ -55,6 +55,8 @@ quotes, so do not reach for a banned word even to talk about it; use the replace
 - punch list → list
 - (the word for out-of-date) → drop it; if you mean something specific, name it (out-of-date, superseded, no longer current)
 - console → dashboard (the code identifiers `console.log` / `console.error` / `console.info` are exempt)
+- (the word for "entire", in every frame, including "that is the … point") → entire, all of, end to end, or drop it
+- (the sentence after the facts that says which of them mattered) → delete it and end on the fact itself
 
 When the hook blocks a reply, restate the result in plain, factual language — none of the terms
 above, no jargon, no first-person feeling words — then stop.
