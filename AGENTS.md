@@ -22,6 +22,19 @@ No jargon, no buzzwords. State the result or the next step in plain words, then 
 This is enforced by the Stop hook `hooks/check-no-pleasantries.mjs`, which blocks a reply that
 contains a banned term and asks for a plain restatement.
 
+### No running commentary while working (owner directive, 2026-11-23)
+
+Do not narrate work in progress. No text between tool calls that announces what was just found or
+what comes next ("Shallow clone breaks the build. Unshallowing and resyncing."). The user follows the
+session on a phone, and every such line is output the account pays for and a line they scroll past.
+Run the tools without a word in between. Write text only when:
+
+- the work is done — the result, in a few lines;
+- the work is blocked on something only the user can decide or do; or
+- a decision changes what the user gets (a different approach than asked, something skipped).
+
+A tool call's short description field is not commentary and stays.
+
 ### Banned-term dictionary (every reply, all agents)
 
 The Stop hook `hooks/check-no-pleasantries.mjs` holds the canonical list and is the source of
