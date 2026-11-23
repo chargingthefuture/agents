@@ -9,7 +9,7 @@ Copy the ones the new repo needs to `.claude/commands/`. They are plain Markdown
 
 ## Take these into every repo
 
-These four need nothing but a git remote and a default branch.
+These five need nothing but a git remote and a default branch.
 
 | Command | What it does |
 |---|---|
@@ -17,6 +17,7 @@ These four need nothing but a git remote and a default branch.
 | `pr.md` | One pass over every open pull request that is behind, conflicted or failing. Fix each; never report that one needs something. |
 | `fix.md` | The owner points at a sentence that reads badly. Rewrite it, fix every copy of it, push. Two-line reply, no explanation of what was wrong. |
 | `fl.md` | The owner asks whether the chat can be archived. Answers whether work exists nowhere but the session. An open pull request is not an open task. |
+| `sync.md` | The owner asks to bring a repo in line with `agents`. Adds what the baseline has and the repo lacks, keeps everything the repo has of its own, one pull request per repo. |
 
 **Three lines to change when you copy them**, because they name the source project's own gates:
 
@@ -26,7 +27,7 @@ These four need nothing but a git remote and a default branch.
 - `fix.md` names the blog repo's checks (`pnpm wiki:validate`, `pnpm wiki:spelling`, `pnpm run
   typecheck`, `pnpm wiki:build`). Swap in the new repo's own.
 
-Everything else in the four is about how to work, not what to run, and carries over unchanged.
+Everything else in the five is about how to work, not what to run, and carries over unchanged.
 
 ## Take these only with the machinery behind them
 
