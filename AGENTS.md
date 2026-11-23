@@ -176,7 +176,7 @@ Mechanism, by where the agent runs:
 ## Slash commands (all agents)
 
 A slash command in `.claude/commands/` is the standing way to do its kind of work. The user does
-not have to type it for it to apply — the request itself is the trigger. Four come with this
+not have to type it for it to apply — the request itself is the trigger. Five come with this
 template and apply in any repository:
 
 | Command | Applies when |
@@ -185,6 +185,7 @@ template and apply in any repository:
 | `/pr` | Open pull requests are blocked, behind, conflicted or failing checks. |
 | `/fix` | The user points at a sentence that does not read right. |
 | `/fl` | The user asks whether the chat can be archived. |
+| `/sync` | The user asks to bring the repo in line with the `agents` baseline. |
 
 `/br` is the one that matters most and the one sessions skip: branch off the latest default branch
 before any edit, never the session's auto-generated branch, then the lifecycle in "Pull requests
