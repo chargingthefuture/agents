@@ -96,6 +96,20 @@ reader down and hides meaning.
 
 ---
 
+## American English (owner directive, 2026-11-23 — all agents)
+
+Write everything in American English spelling and usage: chat replies, pull-request titles and
+descriptions, review and issue comments, commit messages, code comments, documentation, and any text
+an agent adds to a product. Use "color", "behavior", "organize", "center", "license" (noun and verb),
+"canceled", "gray" — not "colour", "behaviour", "organise", "centre", "licence", "cancelled", "grey".
+
+- **Exempt:** real code identifiers, file paths, command names, quoted text, and proper nouns, which
+  keep their exact spelling.
+- When editing text that already uses British spelling, switch the lines you touch to American
+  spelling.
+
+---
+
 ## Task planning — no "phases" (Critical)
 
 Do **not** organize work into "phases." No "Phase 0 / Phase 1 / Phase 2", no phased-rollout buckets —
