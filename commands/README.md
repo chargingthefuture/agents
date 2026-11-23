@@ -46,8 +46,9 @@ new repo actually has the thing it drives, and edit the paths.
 | `product-update.md` | The product-update workflow and its publish input. |
 | `user-guide.md` | Per-plugin feature inventories and a guide generator. |
 | `test-script.md` | Per-plugin feature inventories and manual test scripts. |
+| `s.md` | A post registry generated from front matter, permanent feed numbers, and hand-written and generated paste sheets (the blog repo, `wiki-site`). |
 
-The last seven exist because the scheduled workflows that normally do that work call a paid API,
+The seven from `triage-bug.md` to `test-script.md` exist because the scheduled workflows that normally do that work call a paid API,
 and the account is not always funded. Each one does the same job by hand and files the same output
 in the same shape, so a later funded run carries on rather than duplicating. A new repo that runs
 no such workflows needs none of them.

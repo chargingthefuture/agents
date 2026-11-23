@@ -1,6 +1,6 @@
 # Agent Instructions Template (portable)
 
-Drop-in agent instructions for a **new repository**. This is the project-agnostic core —
+Drop-in agent instructions for a new repository. This is the project-agnostic core —
 the writing voice, the banned-term dictionary, and a few general process rules — distilled
 from a larger codebase's agent rules with all project-specific rules removed. Copy it into a
 new repo, fill in the one placeholder at the bottom with that repo's own rules, and wire up
@@ -42,7 +42,7 @@ truth; if this copy and the hook ever differ, the hook wins. Keep the two in syn
 change one, change the other. The hook scans the entire reply and matches the term even inside
 quotes, so do not reach for a banned word even to talk about it; use the replacement below instead.
 
-**Pleasantries, feelings, and sign-offs — never use any of these (in any reply):**
+Pleasantries, feelings, and sign-offs — never use any of these (in any reply):
 
 - thanks / thank you
 - you're welcome / you are welcome
@@ -62,7 +62,7 @@ quotes, so do not reach for a banned word even to talk about it; use the replace
 - warm / best / kind / kindest regards
 - looking forward
 
-**Excluded vocabulary — banned word → use instead:**
+Excluded vocabulary — banned word → use instead:
 
 - flywheel → a plain description of the loop (for example "each answer improves the next")
 - punch list → list
@@ -78,21 +78,33 @@ above, no jargon, no first-person feeling words — then stop.
 
 ## Plain language — no jargon (Critical — all agents)
 
-Write in plain, everyday language. **Do not use jargon, acronyms, or insider terminology** in
+Write in plain, everyday language. Do not use jargon, acronyms, or insider terminology in
 human-facing output — chat replies, pull-request titles and descriptions, review comments, commit
 messages, issue comments, and documentation. Jargon is a distraction and is confusing; it slows the
 reader down and hides meaning.
 
-- **Default to simple words.** Prefer the plain term over the technical or marketing one (for example
+- Default to simple words. Prefer the plain term over the technical or marketing one (for example
   "test it before you rely on it" over "validate end-to-end"; "make sure" over "ensure idempotency";
   "the background service" over "the daemon"). Write so a non-specialist can follow.
-- **If a technical term is genuinely necessary, define it in plain words on first use** — one short
+- If a technical term is genuinely necessary, define it in plain words on first use — one short
   parenthetical is enough. Do not assume the reader knows acronyms; spell them out the first time.
-- **Explain, don't just name.** Say what something does and why it matters, not only its label.
-- **Exempt:** real code identifiers, file paths, command names, and established proper nouns (service
+- Explain, don't just name. Say what something does and why it matters, not only its label.
+- Exempt: real code identifiers, file paths, command names, and established proper nouns (service
   names, library names) — name those accurately; just don't pile extra jargon around them.
-- Applies to **every agent** and all human-facing communication. When in doubt, choose the wording a
+- Applies to every agent and all human-facing communication. When in doubt, choose the wording a
   newcomer would understand.
+
+---
+
+## Text formatting — minimal bold (all agents)
+
+Keep bold to a minimum, in chat replies and in any Markdown or other file an agent creates or edits.
+
+- Do not bold for emphasis, do not bold every list-item label, and do not bold entire sentences.
+  Overused bold adds visual noise and no information.
+- Acceptable bold is rare and structural: a single table header, or a one-word inline label where
+  the surrounding document already uses that convention. When in doubt, do not bold.
+- Carry structure with headings, lists, tables and plain sentences instead.
 
 ---
 
@@ -103,7 +115,7 @@ descriptions, review and issue comments, commit messages, code comments, documen
 an agent adds to a product. Use "color", "behavior", "organize", "center", "license" (noun and verb),
 "canceled", "gray" — not "colour", "behaviour", "organise", "centre", "licence", "cancelled", "grey".
 
-- **Exempt:** real code identifiers, file paths, command names, quoted text, and proper nouns, which
+- Exempt: real code identifiers, file paths, command names, quoted text, and proper nouns, which
   keep their exact spelling.
 - When editing text that already uses British spelling, switch the lines you touch to American
   spelling.
@@ -112,12 +124,12 @@ an agent adds to a product. Use "color", "behavior", "organize", "center", "lice
 
 ## Task planning — no "phases" (Critical)
 
-Do **not** organize work into "phases." No "Phase 0 / Phase 1 / Phase 2", no phased-rollout buckets —
+Do not organize work into "phases." No "Phase 0 / Phase 1 / Phase 2", no phased-rollout buckets —
 anywhere: plans, checklists, design notes, code comments, pull-request descriptions, or commit
 messages. Phases confuse humans and agents alike.
 
-Instead, when given an objective, break it into discrete tasks and **list them one after another in
-the order they must happen**. Where order matters, state it as an explicit blocking dependency, not a
+Instead, when given an objective, break it into discrete tasks and list them one after another in
+the order they must happen. Where order matters, state it as an explicit blocking dependency, not a
 phase:
 
 - ✅ "Task B is blocked by Task A — do A first."
@@ -148,28 +160,24 @@ can run anytime").
 A task is not finished when the code is written — it is finished when the change is merged and the
 branch is cleaned up. Carry every change through that path, in this order, without being asked:
 
-1. **Open a pull request when the work is complete.** Once the task's changes are committed and the
+1. Open a pull request when the work is complete. Once the task's changes are committed and the
    descriptive branch is pushed, open a pull request from that branch against the default branch.
    Finished work should not sit on a branch with no pull request. Give the request a descriptive,
    plain-language title and a body that says what changed and why, in the same plain voice as every
    other reply.
-2. **Do not watch the request (owner directive, 2026-09-26).** Report once, right after opening, and
-   stop. Do not subscribe to its activity, do not schedule a check-in, and do not wait for its checks
-   to finish. Watching fills the session with notices and full check lists, which brings on
-   compaction sooner, and a compacted session loses what the user said earlier. Checks run locally
-   before every push are what keep a request green; auto-merge (step 4) finishes it. When the user
-   wants to know where open requests stand, they ask, and the agent makes one pass over them.
-3. **Keep it mergeable — fix conflicts.** When a pass over open requests finds the default branch has
+2. Do not watch the request. Report once, right after opening, and stop; auto-merge (step 4)
+   finishes it. See *No pull-request watching* below.
+3. Keep it mergeable — fix conflicts. When a pass over open requests finds the default branch has
    moved ahead and a request has merge
    conflicts, bring the latest default-branch commits into the branch (rebase onto it, or merge
    it in) and resolve the conflicts, keeping both sides' intent. If a conflict is a real, ambiguous
    clash where either resolution changes how the code behaves, stop and ask rather than guess.
-4. **Merge when it is ready.** Merge once the automated checks (continuous integration, or CI) are
+4. Merge when it is ready. Merge once the automated checks (continuous integration, or CI) are
    green and the request is mergeable with no unresolved "changes requested" review. Use the
    repository's default merge method. If required checks take a while, turn on auto-merge so the
    request merges itself the moment they pass, rather than waiting on it. Never force a merge over a
    failing required check or an open request for changes — fix the cause, or report it and stop.
-5. **Delete the branch after merge.** Once the request is merged, delete the now-merged head branch
+5. Delete the branch after merge. Once the request is merged, delete the now-merged head branch
    so old branches do not pile up.
 
 The gate in step 4 — green checks, mergeable, no open change-requests — is the safe default. A
@@ -178,10 +186,10 @@ match the repository's own rules rather than merging around them.
 
 Mechanism, by where the agent runs:
 
-- **Claude Code on the web:** use the GitHub tools to open the request, update its branch from the
+- Claude Code on the web: use the GitHub tools to open the request, update its branch from the
   default branch, and turn on auto-merge. Do not use the pull-request activity subscription. The
   harness may subscribe a session to every request it opens on its own; unsubscribe straight away.
-- **Local Claude Code / a terminal:** `gh pr create` to open it, `gh pr checks` to read check state,
+- Local Claude Code / a terminal: `gh pr create` to open it, `gh pr checks` to read check state,
   `git rebase`/`git merge` to clear conflicts, and `gh pr merge --auto --delete-branch` (with the
   repository's merge method) to merge and remove the branch in one step.
 
@@ -215,6 +223,14 @@ A repository adds its own commands beside these, listed in its own rules file. S
 `commands/README.md` in this template for the rest of the source project's commands and what each
 one needs behind it.
 
+## No pull-request watching (owner directive, 2026-09-26 — all agents)
+
+No command watches a pull request, in any repository. After opening one, do not subscribe to its
+activity, do not schedule a check-in, and do not wait for its checks to finish. Report once and stop.
+Watching fills the session with notices and full check lists, which brings on compaction sooner, and
+a compacted session loses what the user said earlier. The checks run locally before every push keep a
+request green; `/pr` is one pass over open requests when the user asks where they stand, not a watch.
+
 ## Keep sessions from filling up (owner directive, 2026-09-26)
 
 Everything an agent reads stays in the session until compaction, and compaction swaps the earlier
@@ -243,7 +259,7 @@ go in the repository's `CLAUDE.md`, not in chat.
 
 ## What this template deliberately leaves out
 
-Everything below was project-specific in the source codebase and is **not** included here. Add the
+Everything below was project-specific in the source codebase and is not included here. Add the
 ones your new repo needs under the placeholder section, in your own words:
 
 - Design-pass / mockup gating and any design-system rules.
